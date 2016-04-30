@@ -33,9 +33,15 @@ function! devnotes#statusline()
 endfunction
 " }}}1
 
+" function! DevNotes({ 'split': 'vsp', 'size': '40')
+
 " Public functions {{{1
-function! DevNotes()
-  :execute "sp ". devnotes#file()
+function! DevNotes(...)
+  let dict = exists('a:1') ? a:1 : {}
+  let split = get(dict, 'split', 'vsp')
+  let size = get(dict, 'size', '')
+
+  :execute size . split . " ". devnotes#file()
 endfunction
 " }}}1
 
